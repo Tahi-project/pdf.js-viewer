@@ -12058,8 +12058,16 @@ exports.localized = localized;
 {
  var pdfjsLib;
  if (typeof __pdfjsdev_webpack__ === 'undefined') {
+  // this assumes nothing else has defined 'require'--not a safe
+  // assumption, and the source of a nasty, hard-to-find bug
   if (typeof require === 'function') {
-   pdfjsLib = require('../build/pdf.js');
+   try {
+    pdfjsLib = require('../build/pdf.js');
+   }
+   // when require fails, we do the right thing
+   catch(e) {
+    pdfjsLib = window['pdfjs-dist/build/pdf'];
+   }
   } else {
    pdfjsLib = window['pdfjs-dist/build/pdf'];
   }
