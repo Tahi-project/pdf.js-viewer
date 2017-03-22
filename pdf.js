@@ -13905,7 +13905,7 @@ function webViewerUpdateViewarea(e) {
   });
  }
  var href = PDFViewerApplication.pdfLinkService.getAnchorUrl(location.pdfOpenParams);
- PDFViewerApplication.appConfig.toolbar.viewBookmark.href = href;
+//  PDFViewerApplication.appConfig.toolbar.viewBookmark.href = href;
  PDFViewerApplication.appConfig.secondaryToolbar.viewBookmarkButton.href = href;
  PDFViewerApplication.pdfHistory.updateCurrentBookmark(location.pdfOpenParams, location.pageNumber);
  var currentPage = PDFViewerApplication.pdfViewer.getPageView(PDFViewerApplication.page - 1);
@@ -18696,14 +18696,14 @@ var SecondaryToolbar = function SecondaryToolbarClosure() {
     var element = this.buttons[button].element;
     var eventName = this.buttons[button].eventName;
     var close = this.buttons[button].close;
-    element.addEventListener('click', function (eventName, close) {
-     if (eventName !== null) {
-      this.eventBus.dispatch(eventName, { source: this });
-     }
-     if (close) {
-      this.close();
-     }
-    }.bind(this, eventName, close));
+    //element.addEventListener('click', function (eventName, close) {
+    // if (eventName !== null) {
+    //  this.eventBus.dispatch(eventName, { source: this });
+    // }
+    // if (close) {
+    //  this.close();
+    // }
+    //}.bind(this, eventName, close));
    }
   },
   _bindHandToolListener: function SecondaryToolbar_bindHandToolListener(toggleHandToolButton) {
@@ -19125,18 +19125,18 @@ var Toolbar = function ToolbarClosure() {
      value: this.value
     });
    });
-   items.presentationModeButton.addEventListener('click', function (e) {
-    eventBus.dispatch('presentationmode');
-   });
-   items.openFile.addEventListener('click', function (e) {
-    eventBus.dispatch('openfile');
-   });
-   items.print.addEventListener('click', function (e) {
-    eventBus.dispatch('print');
-   });
-   items.download.addEventListener('click', function (e) {
-    eventBus.dispatch('download');
-   });
+//    items.presentationModeButton.addEventListener('click', function (e) {
+//     eventBus.dispatch('presentationmode');
+//    });
+//    items.openFile.addEventListener('click', function (e) {
+//     eventBus.dispatch('openfile');
+//    });
+//    items.print.addEventListener('click', function (e) {
+//     eventBus.dispatch('print');
+//    });
+//    items.download.addEventListener('click', function (e) {
+//     eventBus.dispatch('download');
+//    });
    items.scaleSelect.oncontextmenu = noContextMenuHandler;
    localized.then(this._localized.bind(this));
   },
@@ -19447,15 +19447,15 @@ function webViewerLoad() {
  window.PDFViewerApplication = pdfjsWebApp.PDFViewerApplication;
  pdfjsWebApp.PDFViewerApplication.run(config);
 }
-if (document.readyState === 'interactive' || document.readyState === 'complete') {
- webViewerLoad();
-} else {
+//if (document.readyState === 'interactive' || document.readyState === 'complete') {
+// webViewerLoad();
+//} else {
  PDFJS.webViewerLoad = function (src) {
   if (src)
    DEFAULT_URL = src;
   webViewerLoad();
  };
-}
+//}
 
 /***/ })
 /******/ ]);
