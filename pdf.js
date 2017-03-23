@@ -12815,9 +12815,11 @@ function configure(PDFJS) {
  var scriptTagContainer = document.body || document.getElementsByTagName('head')[0];
  var pdfjsSrc = scriptTagContainer.lastChild.src;
  if (pdfjsSrc) {
-  PDFJS.imageResourcesPath = pdfjsSrc.replace(/pdf\.js$/i, 'images/');
-  PDFJS.workerSrc = pdfjsSrc.replace(/pdf\.js$/i, 'pdf.worker.js');
-  PDFJS.cMapUrl = pdfjsSrc.replace(/pdf\.js$/i, 'cmaps/');
+ // change made by previous developer
+  var pdfjsroot = '/assets/pdfjsviewer/';
+  PDFJS.imageResourcesPath = pdfjsroot + 'images/';
+  PDFJS.workerSrc = pdfjsroot + '/';
+  PDFJS.cMapUrl = pdfjsroot + 'cmaps/';
  }
 }
 var DefaultExernalServices = {
@@ -12877,7 +12879,8 @@ var PDFViewerApplication = {
   renderInteractiveForms: false,
   enablePrintAutoRotate: false
  },
- isViewerEmbedded: window.parent !== window,
+ /* The automatic discovery of this failed and we are always embedded BB */
+ isViewerEmbedded: true,
  url: '',
  baseUrl: '',
  externalServices: DefaultExernalServices,
@@ -14196,6 +14199,7 @@ function webViewerKeyDown(evt) {
   return;
  }
  var curElement = document.activeElement || document.querySelector(':focus');
+ if (curElement.isContentEditable) { return; } // skip any contenteditables BB
  var curElementTagName = curElement && curElement.tagName.toUpperCase();
  if (curElementTagName === 'INPUT' || curElementTagName === 'TEXTAREA' || curElementTagName === 'SELECT') {
   if (evt.keyCode !== 27) {
@@ -17486,7 +17490,7 @@ var PDFThumbnailView = function PDFThumbnailViewClosure() {
   };
   this.anchor = anchor;
   var div = document.createElement('div');
-  div.className = 'thumbnail';
+  div.className = 'pdfthumbnail';
   div.setAttribute('data-page-number', this.id);
   this.div = div;
   if (id === 1) {
@@ -17495,8 +17499,8 @@ var PDFThumbnailView = function PDFThumbnailViewClosure() {
   var ring = document.createElement('div');
   ring.className = 'thumbnailSelectionRing';
   var borderAdjustment = 2 * THUMBNAIL_CANVAS_BORDER_WIDTH;
-  ring.style.width = this.canvasWidth + borderAdjustment + 'px';
-  ring.style.height = this.canvasHeight + borderAdjustment + 'px';
+//   ring.style.width = this.canvasWidth + borderAdjustment + 'px';
+//   ring.style.height = this.canvasHeight + borderAdjustment + 'px';
   this.ring = ring;
   div.appendChild(ring);
   anchor.appendChild(div);
@@ -17747,11 +17751,11 @@ var PDFThumbnailViewer = function PDFThumbnailViewerClosure() {
    return getVisibleElements(this.container, this.thumbnails);
   },
   scrollThumbnailIntoView: function PDFThumbnailViewer_scrollThumbnailIntoView(page) {
-   var selected = document.querySelector('.thumbnail.selected');
+   var selected = document.querySelector('.pdfthumbnail.selected');
    if (selected) {
     selected.classList.remove('selected');
    }
-   var thumbnail = document.querySelector('div.thumbnail[data-page-number="' + page + '"]');
+   var thumbnail = document.querySelector('div.pdfthumbnail[data-page-number="' + page + '"]');
    if (thumbnail) {
     thumbnail.classList.add('selected');
    }
@@ -19125,9 +19129,9 @@ var Toolbar = function ToolbarClosure() {
      value: this.value
     });
    });
-//    items.presentationModeButton.addEventListener('click', function (e) {
-//     eventBus.dispatch('presentationmode');
-//    });
+   items.presentationModeButton.addEventListener('click', function (e) {
+    eventBus.dispatch('presentationmode');
+   });
 //    items.openFile.addEventListener('click', function (e) {
 //     eventBus.dispatch('openfile');
 //    });
