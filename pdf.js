@@ -18603,26 +18603,26 @@ var SecondaryToolbar = function SecondaryToolbarClosure() {
     eventName: 'presentationmode',
     close: true
    },
-   {
-    element: options.openFileButton,
-    eventName: 'openfile',
-    close: true
-   },
-   {
-    element: options.printButton,
-    eventName: 'print',
-    close: true
-   },
-   {
-    element: options.downloadButton,
-    eventName: 'download',
-    close: true
-   },
-   {
-    element: options.viewBookmarkButton,
-    eventName: null,
-    close: true
-   },
+//    {
+//     element: options.openFileButton,
+//     eventName: 'openfile',
+//     close: true
+//    },
+//    {
+//     element: options.printButton,
+//     eventName: 'print',
+//     close: true
+//    },
+//    {
+//     element: options.downloadButton,
+//     eventName: 'download',
+//     close: true
+//    },
+//    {
+//     element: options.viewBookmarkButton,
+//     eventName: null,
+//     close: true
+//    },
    {
     element: options.firstPageButton,
     eventName: 'firstpage',
@@ -18696,19 +18696,22 @@ var SecondaryToolbar = function SecondaryToolbarClosure() {
   },
   _bindClickListeners: function SecondaryToolbar_bindClickListeners() {
    this.toggleButton.addEventListener('click', this.toggle.bind(this));
-   for (var button in this.buttons) {
-    var element = this.buttons[button].element;
-    var eventName = this.buttons[button].eventName;
-    var close = this.buttons[button].close;
-    //element.addEventListener('click', function (eventName, close) {
-    // if (eventName !== null) {
-    //  this.eventBus.dispatch(eventName, { source: this });
-    // }
-    // if (close) {
-    //  this.close();
-    // }
-    //}.bind(this, eventName, close));
-   }
+//    for (var button in this.buttons) {
+    var self = this;
+    this.buttons.forEach(function (_element, button, buttons){
+    var element = buttons[button].element;
+    var eventName = buttons[button].eventName;
+    var close = buttons[button].close;
+//     if (element === undefined) { return; } //BZ&BB
+    element.addEventListener('click', function (eventName, close) {
+    if (eventName !== null) {
+     self.eventBus.dispatch(eventName, { source: self });
+    }
+    if (close) {
+     self.close();
+    }
+    }.bind(self, eventName, close));
+   });
   },
   _bindHandToolListener: function SecondaryToolbar_bindHandToolListener(toggleHandToolButton) {
    var isHandToolActive = false;
