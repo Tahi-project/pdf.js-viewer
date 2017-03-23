@@ -269,20 +269,14 @@
   margin: 0
 }
 
-html {
+.pdfjs {
   height: 100%;
   width: 100%;
-  font-size: 10px
-}
-
-body {
-  height: 100%;
-  width: 100%;
+  font-size: 10px;
   background-color: #404040;
   background-image: url(images/texture.png)
 }
 
-body,
 .pdfjs input,
 .pdfjs button,
 .pdfjs select {
