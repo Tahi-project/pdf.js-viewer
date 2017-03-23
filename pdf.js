@@ -18696,20 +18696,20 @@ var SecondaryToolbar = function SecondaryToolbarClosure() {
   },
   _bindClickListeners: function SecondaryToolbar_bindClickListeners() {
    this.toggleButton.addEventListener('click', this.toggle.bind(this));
-//    for (var button in this.buttons) {
-    var self = this;
-    this.buttons.forEach(function (_element, button, buttons){
+   // for (var button in this.buttons) {
+   // above fails in Ember
+   var self = this;
+   this.buttons.forEach(function (_element, button, buttons){
     var element = buttons[button].element;
     var eventName = buttons[button].eventName;
     var close = buttons[button].close;
-//     if (element === undefined) { return; } //BZ&BB
     element.addEventListener('click', function (eventName, close) {
-    if (eventName !== null) {
-     self.eventBus.dispatch(eventName, { source: self });
-    }
-    if (close) {
-     self.close();
-    }
+     if (eventName !== null) {
+      self.eventBus.dispatch(eventName, { source: self });
+     }
+     if (close) {
+      self.close();
+     }
     }.bind(self, eventName, close));
    });
   },
