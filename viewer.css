@@ -1375,20 +1375,20 @@ html[dir='rtl'] .pdfjs .verticalToolbarSeparator {
   -webkit-overflow-scrolling: touch
 }
 
-.pdfjs .thumbnail {
+.pdfjs .pdfthumbnail {
   float: left;
   margin-bottom: 5px
 }
 
-.pdfjs #thumbnailView>a:last-of-type>.thumbnail {
+.pdfjs #thumbnailView>a:last-of-type>.pdfthumbnail {
   margin-bottom: 10px
 }
 
-.pdfjs #thumbnailView>a:last-of-type>.thumbnail:not([data-loaded]) {
+.pdfjs #thumbnailView>a:last-of-type>.pdfthumbnail:not([data-loaded]) {
   margin-bottom: 9px
 }
 
-.pdfjs .thumbnail:not([data-loaded]) {
+.pdfjs .pdfthumbnail:not([data-loaded]) {
   border: 1px dashed rgba(255, 255, 255, 0.5);
   margin: -1px -1px 4px -1px
 }
@@ -1407,13 +1407,13 @@ html[dir='rtl'] .pdfjs .verticalToolbarSeparator {
   padding: 7px
 }
 
-.pdfjs a:focus>.thumbnail>.thumbnailSelectionRing>.thumbnailImage,
-.pdfjs .thumbnail:hover>.thumbnailSelectionRing>.thumbnailImage {
+.pdfjs a:focus>.pdfthumbnail>.thumbnailSelectionRing>.thumbnailImage,
+.pdfjs .pdfthumbnail:hover>.thumbnailSelectionRing>.thumbnailImage {
   opacity: .9
 }
 
-.pdfjs a:focus>.thumbnail>.thumbnailSelectionRing,
-.pdfjs .thumbnail:hover>.thumbnailSelectionRing {
+.pdfjs a:focus>.pdfthumbnail>.thumbnailSelectionRing,
+.pdfjs .pdfthumbnail:hover>.thumbnailSelectionRing {
   background-color: hsla(0, 0%, 100%, .15);
   background-image: linear-gradient(hsla(0, 0%, 100%, .05), hsla(0, 0%, 100%, 0));
   background-clip: padding-box;
@@ -1421,12 +1421,12 @@ html[dir='rtl'] .pdfjs .verticalToolbarSeparator {
   color: hsla(0, 0%, 100%, .9)
 }
 
-.pdfjs .thumbnail.selected>.thumbnailSelectionRing>.thumbnailImage {
+.pdfjs .pdfthumbnail.selected>.thumbnailSelectionRing>.thumbnailImage {
   box-shadow: 0 0 0 1px hsla(0, 0%, 0%, .5);
   opacity: 1
 }
 
-.pdfjs .thumbnail.selected>.thumbnailSelectionRing {
+.pdfjs .pdfthumbnail.selected>.thumbnailSelectionRing {
   background-color: hsla(0, 0%, 100%, .3);
   background-image: linear-gradient(hsla(0, 0%, 100%, .05), hsla(0, 0%, 100%, 0));
   background-clip: padding-box;
